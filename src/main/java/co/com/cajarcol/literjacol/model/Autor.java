@@ -14,14 +14,19 @@ public class Autor {
     private String nombre;
     private int anoDeNacimiento;
     private int anoDeFallecimiento;
-    private List<Libro> libro;
+
+    @ManyToMany
+    @JoinTable(name = "libro_autor", joinColumns = @JoinColumn(name = "autor_id"), inverseJoinColumns = @JoinColumn(name = "libro_id"))
+    private List<Libro> libros;
 
     public Autor(){
 
     }
 
     public Autor(DatosAutor datosAutor){
-        this.nombre = datosAutor.
+        this.nombre = datosAutor.nombre();
+        this.anoDeNacimiento = datosAutor.anoDeNacimientom();
+        this.anoDeFallecimiento = datosAutor.anoDeFallecimiento();
     }
 
     public Long getId() {

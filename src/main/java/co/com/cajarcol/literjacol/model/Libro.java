@@ -16,10 +16,17 @@ public class Libro {
     private Long id;
     @Column(unique = true)
     private String titulo;
-    private List<Autor> autores;
-    @Enumerated(EnumType.STRING)
-    private List<Lenguaje> idiomas;
     private int numeroDeDescargas;
+
+    @ManyToMany
+    @JoinTable(name = "libro_autor", joinColumns = @JoinColumn(name = "libro_id"), inverseJoinColumns = @JoinColumn(name = "autor_id"))
+    private List<Autor> autores;
+
+    @ElementCollection(targetClass = Lenguaje.class)
+    @Enumerated(EnumType.STRING)
+    @CollectionTable(name = "libro_lenguaje", joinColumns = @JoinColumn(name = "libro_id"))
+    @Column(name = "lenguaje")
+    private List<Lenguaje> idiomas;
 
     public Libro(){
 
@@ -27,7 +34,6 @@ public class Libro {
 
     public Libro(DatosLibro datosLibro){
         this.titulo = datosLibro.titulo();
-        this.idiomas = Lenguaje.fromApi(datosLibro.idiomas().stream().));
         this.numeroDeDescargas = datosLibro.numeroDeDescargas();
     }
 
@@ -52,7 +58,6 @@ public class Libro {
     }
 
     public void setAutores(List<Autor> autores) {
-        autores.forEach(a -> a.setLibros((List<Libro>) this));
         this.autores = autores;
     }
 
