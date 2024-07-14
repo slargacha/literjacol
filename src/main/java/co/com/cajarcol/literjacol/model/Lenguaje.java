@@ -1,9 +1,9 @@
 package co.com.cajarcol.literjacol.model;
 
 public enum Lenguaje {
-    INGLES("en", "Ingles", "English"),
-    ESPANOL("es", "Español", "Spanish");
-
+    INGLES("EN", "Ingles", "English"),
+    ESPANOL("ES", "Español", "Spanish"),
+    FRANCIA("FR", "Francia", "France");
 
     private String lenguajeGutendex;
     private String lenguajeEspanol;

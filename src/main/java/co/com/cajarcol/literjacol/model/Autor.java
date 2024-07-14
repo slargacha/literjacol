@@ -2,7 +2,9 @@ package co.com.cajarcol.literjacol.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "autores")
@@ -12,12 +14,11 @@ public class Autor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
-    private int anoDeNacimiento;
-    private int anoDeFallecimiento;
+    private Integer anoDeNacimiento;
+    private Integer anoDeFallecimiento;
 
-    @ManyToMany
-    @JoinTable(name = "libro_autor", joinColumns = @JoinColumn(name = "autor_id"), inverseJoinColumns = @JoinColumn(name = "libro_id"))
-    private List<Libro> libros;
+    @ManyToMany(mappedBy = "autores", fetch = FetchType.EAGER)
+    private List<Libro> libros = new ArrayList<>();
 
     public Autor(){
 
@@ -25,7 +26,7 @@ public class Autor {
 
     public Autor(DatosAutor datosAutor){
         this.nombre = datosAutor.nombre();
-        this.anoDeNacimiento = datosAutor.anoDeNacimientom();
+        this.anoDeNacimiento = datosAutor.anoDeNacimiento();
         this.anoDeFallecimiento = datosAutor.anoDeFallecimiento();
     }
 
@@ -67,5 +68,23 @@ public class Autor {
 
     public void setLibros(List<Libro> libros) {
         this.libros = libros;
+    }
+
+    public void agregarLibro(Libro libro){
+        this.libros.add(libro);
+    }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "Autor: %s\n" +
+                "Fecha de nacimiento: %d\n" +
+                "Fecha de fallecimiento: %d\n" +
+                "Libros: %s\n",
+                this.nombre,
+                this.anoDeNacimiento,
+                this.anoDeFallecimiento,
+                this.libros.stream().map(Libro::getTitulo).collect(Collectors.joining(", "))
+        );
     }
 }
