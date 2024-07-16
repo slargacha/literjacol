@@ -2,9 +2,7 @@
 
 Esta vez les traigo la aplicacion Literjacol, es una implementacion del challenge LiterAlura, esta aplicacion consume la API de Gutendex (https://gutendex.com/) para almacenar libros y autores
 
-
-![Descripción de la imagen](imagenes/Menu.jpg)
-
+![badge literalura](https://github.com/user-attachments/assets/862c8e2b-f42e-461e-8cd3-6e6d24848f5f)
 
 ## 🚀 Descripción
 
@@ -69,10 +67,6 @@ Despues de digitar año el sistema nos devuelve una lista de autores vivos en es
 ![image](https://github.com/user-attachments/assets/561350fd-5ea4-47bc-9e5a-2e5b05cfbdaf)
 
 ## 📝 Listar libros por idioma
-
-![Descripción de la imagen](imagenes/Listar%20libros%20por%20idioma.jpg)
-
-## 📝 Busqueda de libro no encontrado por idioma
 
 Aqui en el sistema cuando digitamos la opcion 5, el sistema nos va a mostrar una lista de Idiomas, vamos a escribir tal como se muestra en el menu de opcion, tal como aca:
 
